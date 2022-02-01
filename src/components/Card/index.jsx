@@ -1,16 +1,17 @@
 /**Importação, componentes, libs, etc */
 
+import Button from "../Button";
 // Chamada da função com as props no parametro se existirem
-const Card = ({ name }) => {
+export const Card = ({ country }) => {
   // Logíca acima do return
 
   return (
-    <h1>
-      {/* Renderização do jsx e variáveis  */}
-      Olá Mundo! {name}
-    </h1>
+    /* Fragment */
+    <>
+      <h1>{country.name}</h1>
+      <span>{country.population}</span>
+    </>
   );
 };
 
 // exportação para utilizar em outros lugares
-export default Card;
