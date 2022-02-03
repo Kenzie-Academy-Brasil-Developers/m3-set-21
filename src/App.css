@@ -24,6 +24,11 @@
   color: white;
 }
 
+.App-header svg {
+  width: 250px;
+  height: 250px;
+}
+
 .App-link {
   color: #61dafb;
 }
