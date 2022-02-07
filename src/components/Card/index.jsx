@@ -1,14 +1,23 @@
 /**Importação, componentes, libs, etc */
 
+import { useEffect } from "react";
+
 // Chamada da função com as props no parametro se existirem
-const Card = ({ name }) => {
+const Card = ({ name, company }) => {
   // Logíca acima do return
 
+  // desmontagem
+  useEffect(
+    () => () => {
+      console.log(name);
+    },
+    []
+  );
+
   return (
-    <h1>
-      {/* Renderização do jsx e variáveis  */}
-      Olá Mundo! {name}
-    </h1>
+    <li>
+      Nome do foguete: {name} - Empresa: {company}
+    </li>
   );
 };
 
