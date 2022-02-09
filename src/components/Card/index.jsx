@@ -1,16 +1,16 @@
-/**Importação, componentes, libs, etc */
+import { Container, Gandalf } from "./styles";
 
-// Chamada da função com as props no parametro se existirem
-const Card = ({ name }) => {
-  // Logíca acima do return
-
+const Card = () => {
   return (
-    <h1>
-      {/* Renderização do jsx e variáveis  */}
-      Olá Mundo! {name}
-    </h1>
+    <Container>
+      <h1>Personagens</h1>
+      <div>
+        <p>Frodo</p>
+        <Gandalf>Gandalf</Gandalf>
+        <p>Sam</p>
+      </div>
+    </Container>
   );
 };
 
-// exportação para utilizar em outros lugares
 export default Card;
