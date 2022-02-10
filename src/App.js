@@ -1,15 +1,17 @@
-/** Importações css, bibliotecas, importações de dentro react, componentes */
+import { useState } from "react";
+import Register from "./components/Register";
+import Display from "./components/Display";
+
 import "./App.css";
-import Card from "./components/Card";
 
 function App() {
+  const [students, setStudents] = useState([{ name: "Vilson", grade: 10 }]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <Card name="Gabriel" />
-        <Card name="Amanda" />
-        <Card name="Wesley" />
-        <Card name="Ivan" />
+        <Register students={students} setStudents={setStudents} />
+        <Display students={students} />
       </header>
     </div>
   );
