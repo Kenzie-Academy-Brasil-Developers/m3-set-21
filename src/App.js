@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Counter from "./components/Counter";
-import axios from "axios";
+import { api } from "./services/api";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   const [count, setCount] = useState(34);
-  const [groups, setGroups] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [next, setNext] = useState("");
   const [error, setError] = useState(false);
+
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   /* useEffect com as 3 situações, pode ser necessário se tudo tiver interligado*/
   // useEffect(() => {
@@ -39,34 +44,20 @@ function App() {
     //     setGroups([]);
     //   });
 
-    async function fetchGroups() {
+    async function fetchUsers() {
       if (count > 0) {
-        const response = await axios
-          .get(`https://kenzie-habits.herokuapp.com/groups/?page=${count}`)
-          .catch((err) => {
-            setError(true);
-            setGroups([]);
-          });
+        const response = await api.get(`/users/?page=${count}`).catch((err) => {
+          setError(true);
+          setUsers([]);
+        });
 
         setLoading(false);
-        setGroups(response.data.results);
+        setUsers(response.data.results);
       }
     }
 
-    fetchGroups();
+    fetchUsers();
   }, [count]);
-
-  const nextPage = () => {
-    setLoading(true);
-    setCount(count + 1);
-  };
-
-  const previousPage = () => {
-    if (count > 1) {
-      setLoading(true);
-      setCount(count - 1);
-    }
-  };
 
   if (error) {
     return (
@@ -76,27 +67,59 @@ function App() {
     );
   }
 
+  const createUser = async (e) => {
+    e.preventDefault();
+
+    const user = {
+      username,
+      email,
+      password,
+    };
+
+    const response = await api.post("/users/", user).catch((err) => {
+      toast.error("Esse nome de usuário já está em uso");
+    });
+
+    console.log(response);
+
+    setUsers([...users, response.data]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        {count <= 10 ? (
-          <Counter count={count} />
-        ) : (
-          <span>A contagem está maior q 10 = {count}</span>
-        )}
+    <>
+      <ToastContainer />
+      <div className="App">
+        <header className="App-header">
+          <ul>
+            {loading ? (
+              <h2>Carregando...</h2>
+            ) : (
+              users.map((user) => <li key={user.id}>{user.username}</li>)
+            )}
+          </ul>
 
-        <button onClick={nextPage}>Próxima página</button>
-        <button onClick={previousPage}>Página anterior</button>
-
-        <ul>
-          {loading ? (
-            <h2>Carregando...</h2>
-          ) : (
-            groups.map((group) => <li key={group.id}>{group.name}</li>)
-          )}
-        </ul>
-      </header>
-    </div>
+          <form onSubmit={createUser}>
+            <input
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              placeholder="Senha"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Criar um usuário novo</button>
+          </form>
+        </header>
+      </div>{" "}
+    </>
   );
 }
 
