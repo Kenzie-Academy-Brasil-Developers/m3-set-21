@@ -1,15 +1,32 @@
-/** Importações css, bibliotecas, importações de dentro react, componentes */
 import "./App.css";
-import Card from "./components/Card";
+import { Switch, Route } from "react-router-dom";
+import Home from "./Page/Home";
+import Login from "./Page/Login";
+import Pokemon from "./Page/Pokemon";
+import Users from "./Page/Users";
+import Profile from "./Page/Profile";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Card name="Gabriel" />
-        <Card name="Amanda" />
-        <Card name="Wesley" />
-        <Card name="Ivan" />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/pokemon/:name">
+            <Pokemon />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/user/:id">
+            <Profile />
+          </Route>
+        </Switch>
       </header>
     </div>
   );
