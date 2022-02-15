@@ -10,16 +10,16 @@ const Home = () => {
       <h3>Home</h3>
       <ul>
         <li>
-          <a href="/login">link login</a>
+          <a href="/signup">link signup</a>
         </li>
         <li>
-          <Link to="/login">link login</Link>
+          <Link to="/signup">link signup</Link>
         </li>
         <li>
           <Link to="/pokemon/pikachu">pokemon</Link>
         </li>
         <li>
-          <button onClick={() => history.push("/login")}>link login</button>
+          <button onClick={() => history.push("/signup")}>link signup</button>
         </li>
       </ul>
     </div>

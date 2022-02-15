@@ -1,32 +1,25 @@
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
-import Home from "./Page/Home";
-import Login from "./Page/Login";
-import Pokemon from "./Page/Pokemon";
-import Users from "./Page/Users";
-import Profile from "./Page/Profile";
+import Routes from "./Routes";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/pokemon/:name">
-            <Pokemon />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/user/:id">
-            <Profile />
-          </Route>
-        </Switch>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Routes />
       </header>
     </div>
   );
