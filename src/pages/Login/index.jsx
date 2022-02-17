@@ -14,13 +14,13 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Checkbox from "../../components/Checkbox";
+import api from "../../services/api";
+import { toast } from "react-toastify";
+import { useHistory, Redirect } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ auth, setAuth }) => {
   const schema = yup.object().shape({
-    email: yup
-      .string()
-      .email("Digite um email válido")
-      .required("Campo obrigatório"),
+    username: yup.string().required("Campo obrigatório"),
     password: yup.string().required("Campo obrigatório"),
   });
 
@@ -30,7 +30,27 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const handleLogin = (data) => console.log(data);
+  const history = useHistory();
+
+  if (auth) {
+    return <Redirect to="/dashboard" />;
+  }
+
+  const handleLogin = async (data) => {
+    const response = await api.post("/sessions/", data).catch((err) => {
+      console.log(err);
+      toast.error("Erro na autenticação, cheque suas credenciais");
+    });
+
+    const { access } = response.data;
+
+    localStorage.setItem("@NomeDaAplicação:token", access);
+
+    toast.success("Login feito com sucesso!");
+
+    setAuth(true);
+    history.push("/dashboard");
+  };
 
   return (
     <Container component="main">
@@ -55,12 +75,12 @@ const Login = () => {
           sx={{ mt: 1 }}
         >
           <TextField
-            {...register("email")}
+            {...register("username")}
             margin="normal"
             fullWidth
-            label="Email"
-            helperText={errors.email?.message}
-            error={!!errors.email?.message}
+            label="Nome de usuário"
+            helperText={errors.username?.message}
+            error={!!errors.username?.message}
           />
           <TextField
             {...register("password")}
