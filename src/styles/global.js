@@ -56,3 +56,8 @@ export const product1 = "#eef6ff";
 export const product2 = "#fff7f4";
 export const product3 = "#ffe4ea";
 export const product4 = "#f3eef5";
+
+export const primary = "#ff2253";
+export const primary50 = "#ffe9ee";
+export const secondary = "#4aca94";
+export const secondary50 = "#e4f7ef";

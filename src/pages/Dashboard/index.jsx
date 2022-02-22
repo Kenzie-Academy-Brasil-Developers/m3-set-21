@@ -2,10 +2,10 @@ import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { product3 } from "../../styles/global";
 
-const Home = () => {
+const Dashboard = () => {
   return (
     <div>
-      Home
+      Dashboard
       <Button onClick={() => console.log("Teste")} backgroundColor={product3}>
         🥖 Panificadora
       </Button>
@@ -14,4 +14,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;
