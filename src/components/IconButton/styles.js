@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  background-color: var(--color-secondary-50);
+  background-color: ${(props) =>
+    props.primary ? "var(--color-primary-50)" : "var(--color-secondary-50)"};
   border: 0;
   border-radius: 50%;
   width: 35px;
@@ -11,13 +12,19 @@ export const Container = styled.button`
   svg {
     transition: 0.5s;
     margin-top: 4px;
-    color: var(--color-secondary);
+    color: ${(props) =>
+      props.primary ? "var(--color-primary)" : "var(--color-secondary)"};
   }
 
   :hover {
-    background-color: var(--color-secondary);
+    background-color: ${(props) =>
+      props.primary ? "var(--color-primary)" : "var(--color-secondary)"};
+
     svg {
-      color: var(--color-secondary-50);
+      color: ${(props) =>
+        props.primary
+          ? "var(--color-primary-50)"
+          : "var(--color-secondary-50)"};
     }
   }
 `;

@@ -1,10 +1,9 @@
-import { FaShoppingCart } from "react-icons/fa";
 import { Container } from "./styles";
 
-const IconButton = () => {
+const IconButton = ({ icon: Icon, primary = true }) => {
   return (
-    <Container>
-      <FaShoppingCart />
+    <Container primary={primary}>
+      <Icon />
     </Container>
   );
 };

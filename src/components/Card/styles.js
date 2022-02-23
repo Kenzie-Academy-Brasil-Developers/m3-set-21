@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: var(--aside-size);
+  @media (min-width: 768px) {
+    width: var(--aside-size);
+  }
+
+  min-width: var(--aside-size);
   height: max-content;
   border-radius: var(--border-cards);
   position: sticky;
