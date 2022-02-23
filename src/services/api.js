@@ -1,9 +1,7 @@
 import axios from "axios";
 
-export const kenzieFoodApi = axios.create({
-  baseURL: "https://kenzie-food-api.herokuapp.com",
+const api = axios.create({
+  baseURL: "http://localhost:3333",
 });
 
-export const kenziehubApi = axios.create({
-  baseURL: "https://kenziehub.herokuapp.com",
-});
+export default api;
