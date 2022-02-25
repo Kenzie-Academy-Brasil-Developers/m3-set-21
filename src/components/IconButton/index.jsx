@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-const IconButton = ({ icon: Icon, primary = true }) => {
+const IconButton = ({ icon: Icon, primary = true, ...rest }) => {
   return (
-    <Container primary={primary}>
+    <Container {...rest} primary={primary}>
       <Icon />
     </Container>
   );

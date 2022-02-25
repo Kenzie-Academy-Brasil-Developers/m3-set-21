@@ -106,3 +106,9 @@ export const NoProductsMessage = styled.div`
     font-weight: normal;
   }
 `;
+
+export const TextInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+`;
