@@ -6,6 +6,7 @@ export const Container = styled.div`
   height: 80px;
   justify-content: space-between;
   box-shadow: var(--box-shadow);
+  flex-wrap: wrap;
 
   padding: 20px 40px 0px 40px;
 
