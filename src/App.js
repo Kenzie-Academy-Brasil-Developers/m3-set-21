@@ -1,16 +1,19 @@
-/** Importações css, bibliotecas, importações de dentro react, componentes */
 import "./App.css";
-import Card from "./components/Card";
 
-function App() {
+import AllBooks from "./components/AllBooks";
+import MyBookCollection from "./components/MyCollectionBooks";
+
+function App({}) {
   return (
     <div className="App">
-      <header className="App-header">
-        <Card name="Gabriel" />
-        <Card name="Amanda" />
-        <Card name="Wesley" />
-        <Card name="Ivan" />
-      </header>
+      <h3>All Books</h3>
+      <div className="App-header">
+        <AllBooks />
+      </div>
+      <h3>My Collection</h3>
+      <div className="App-header">
+        <MyBookCollection />
+      </div>
     </div>
   );
 }
