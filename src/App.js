@@ -1,17 +1,24 @@
-/** Importações css, bibliotecas, importações de dentro react, componentes */
+import { useState } from "react";
+import PageLogin from "./page/PageLogin";
+import PageDashboard from "./page/PageDashboard";
+
+import { Switch, Route } from "react-router-dom";
+
 import "./App.css";
-import Card from "./components/Card";
 
 function App() {
+  const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Card name="Gabriel" />
-        <Card name="Amanda" />
-        <Card name="Wesley" />
-        <Card name="Ivan" />
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        <PageLogin setUser={setUser} setToken={setToken} />
+      </Route>
+      <Route path="/user">
+        <PageDashboard user={user} setUser={setUser} token={token} />
+      </Route>
+    </Switch>
   );
 }
 
