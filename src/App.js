@@ -1,15 +1,16 @@
-/** Importações css, bibliotecas, importações de dentro react, componentes */
+import ChangeWalletValues from "./components/ChangeWalletValues";
+import Display from "./components/Display";
+import ListPokemons from "./components/ListPokemons";
+
 import "./App.css";
-import Card from "./components/Card";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Card name="Gabriel" />
-        <Card name="Amanda" />
-        <Card name="Wesley" />
-        <Card name="Ivan" />
+        <Display />
+        <ChangeWalletValues />
+        <ListPokemons />
       </header>
     </div>
   );
